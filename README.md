@@ -1,29 +1,6 @@
-# sctrna-reproducibility
+# Single-cell translator and RNA sequencing – Reproducibility repo
 Repository for reanalyzing and reproducing single-cell tRNA-seq analyses
 
-
-file_structure/
-├── git_repo/
-│   ├── global_functions
-│   │         ├── tRNA_import.R
-│   │         └── tRNA_valid.R
-│   └── project
-│                ├── code
-│                │        └── setup.R
-│                └── output
-└── trna_large_data
-                   ├── giftwrap
-                   │        ├── Sample_A
-                   │        │        ├── barcodes.tsv.gz
-                   │        │        ├── manifest.tsv
-                   │        │        └── probe_reads.tsv.gz
-                   │        └── Sample_B
-                   │                   ├── barcodes.tsv.gz
-                   │                   ├── manifest.tsv
-                   │                   └── probe_reads.tsv.gz
-                   ├── mRNA
-                   │        ├── Sample_A.wta.h5
-                   │        └── Sample_B.wta.h5
-                   └── output
+<img width="1256" height="349" alt="Screenshot 2026-10-27 at 2 33 08 AM" src="https://github.com/user-attachments/assets/bd6cb330-add1-461a-9697-4faddd2ca78c" />
 
                    
