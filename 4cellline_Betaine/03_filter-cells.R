@@ -13,8 +13,9 @@ so_4clb_filt <- so_4clb[,cells_keep]
 dim(so_4clb_filt) # 18129 18528
 
 # tRNA counts for manuscript text
-dim(so_4clb_filt) #455 18528
 colMeans(so_4clb_filt@meta.data[, c("nCount_RNA", "nCount_tRNA_pp_valid")])
+# nCount_RNA nCount_tRNA_pp_valid 
+# 2520.354            11321.873
 so_4clb_filt@meta.data %>%
   summarise(across(c(nCount_RNA, nCount_tRNA_pp_valid),
                    list(mean = mean, median = median, sd = sd)))
@@ -24,8 +25,8 @@ so_4clb_filt <- NormalizeData(so_4clb_filt) %>% FindVariableFeatures() %>% Scale
   FindNeighbors() %>% RunUMAP(dims = 1:30)
 so_4clb_filt <- FindClusters(so_4clb_filt, resolution = 0.2)
 
-DimPlot(so_4clb_filt, reduction = "umap", group.by = "cell_line", label = FALSE, pt.size = 0.005) +
+p <- DimPlot(so_4clb_filt, reduction = "umap", group.by = "cell_line", label = FALSE, pt.size = 0.005) +
   scale_color_manual(values = col1) + theme_void() +  labs(title = NULL) + NoLegend()
-cowplot::ggsave2(p, file = "../output/umap_cellline_figure1_3.png", width = 5.8, height = 5.2, dpi = 400)
+cowplot::ggsave2(p, file = "../output/umap_cellline_figure1.png", width = 5.8, height = 5.2, dpi = 400)
 
 saveRDS(so_4clb, file="../../../trna_large_data/output/seurat_object_4cellline_Betaine_deepSeq_annotated_261019_filt.rds")
