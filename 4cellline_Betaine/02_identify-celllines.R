@@ -33,7 +33,7 @@ so_4clb$cell_line <- case_when(
 )
 DimPlot(so_4clb, group.by = c("seurat_clusters", "cell_line", "Phase"), label = TRUE)
 
-col1 = c("HeLa"="#C2CC8E", "HEK293T"="darkblue", "Jurkat"="maroon", "K562"="cyan3")
+col1 = c("HeLa"="darkseagreen", "HEK293T"="darkblue", "Jurkat"="violetred4", "K562"="cyan3")
 DimPlot(so_4clb, reduction = "umap", group.by = "cell_line", label = FALSE) + 
   theme_void() +labs(title = NULL) + NoLegend() + scale_color_manual(values = col1)
 
