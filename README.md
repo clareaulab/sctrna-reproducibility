@@ -1,7 +1,7 @@
 # Single-cell translatome and RNA sequencing (sctRNA-seq) analysis repository
 Repository for reanalyzing and reproducing single-cell tRNA-seq analyses
 
-<img width="1256" height="349" alt="Screenshot 2026-10-27 at 2 33 08 AM" src="https://github.com/user-attachments/assets/bd6cb330-add1-461a-9697-4faddd2ca78c" />
+<img width="1465" height="409" alt="Screenshot 2026-10-28 at 3 10 44 PM" src="https://github.com/user-attachments/assets/2a6ab52e-d379-47f2-a4d1-8e49977732cd" />
 
 
 Analyses from all main figures are coordinated in the following folders:
