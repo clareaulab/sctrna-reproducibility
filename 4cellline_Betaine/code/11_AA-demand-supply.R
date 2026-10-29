@@ -237,5 +237,4 @@ p <- ggplot(ac_count, aes(x = log10(tRNA_demand), y = log10(tRNA_supply), color=
   #geom_text(data=ac_count, aes(label=AA)) +
   scale_fill_manual(values = celltype_cols) +
   scale_color_manual(values = celltype_cols)
-cowplot::ggsave2(p, file = "../output/codondemand-supply_AA2.pdf", width = 3.5, height = 3, dpi = 400)
 cowplot::ggsave2(p, file = "../output/codondemand-supply_AA3.pdf", width = 3.5, height = 3.5, dpi = 400)
