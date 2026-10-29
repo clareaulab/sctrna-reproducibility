@@ -11,7 +11,7 @@ sgRNA_qc <- read.table(
 )
 cells_qc <- sgRNA_qc$barcode
 so_p <- so_p[,cells_qc]
-dim(so_p) # 18099 89077 (prev. 89091) # 18099 89088 (prev. 89102)
+dim(so_p)
 
 sparse_sgRNA <- sparseMatrix(i = as.factor(sgRNA_qc$max_id), j = as.factor(sgRNA_qc$barcode), x = sgRNA_qc$total_umi)
 rownames(sparse_sgRNA) <- levels(as.factor(sgRNA_qc$max_id))
