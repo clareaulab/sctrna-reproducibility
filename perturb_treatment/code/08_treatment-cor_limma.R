@@ -33,29 +33,28 @@ md$is_ntc   <- grepl("_NTC_[AB]$", md$guide_id)
 
 keep_cells <- md$is_ntc & md$sample2 %in% c("Con", "AAd")
 so_n <- so_p2[, keep_cells]
-md   <- md[keep_cells, ]
+md <- md[keep_cells, ]
 
 # pseudobulk per NTC guide x treatment
 grp <- factor(paste(md$guide_id, md$sample2, sep = "|"))
-pb  <- as.matrix(so_n[["tRNA_pp_valid"]]$counts %*% t(fac2sparse(grp)))
+pb <- as.matrix(so_n[["tRNA_pp_valid"]]$counts %*% t(fac2sparse(grp)))
 
 meta <- data.frame(pb_id  = levels(grp),
                    ncells = as.vector(table(grp)),
                    row.names = levels(grp))
-meta$guide_id  <- sub("\\|.*$", "", meta$pb_id)
+meta$guide_id <- sub("\\|.*$", "", meta$pb_id)
 meta$treatment <- sub("^.*\\|", "", meta$pb_id)
 
-# keep guides present in both treatments
+# quality filter, keep guides present in both treatments
 meta <- meta[meta$ncells >= 100, ]
 paired <- names(which(table(meta$guide_id) == 2))
 meta <- meta[meta$guide_id %in% paired, ]
-pb   <- pb[, rownames(meta)]
+pb <- pb[, rownames(meta)]
 length(paired) # 18
 tapply(meta$ncells, meta$treatment, summary)
 
-## paired design: guide as block, control as reference
 meta$treatment <- factor(meta$treatment, levels = c("Con", "AAd"))
-meta$guide_id  <- factor(meta$guide_id)
+meta$guide_id <- factor(meta$guide_id)
 design <- model.matrix(~ guide_id + treatment, data = meta)
 
 y <- DGEList(pb)
@@ -63,40 +62,40 @@ dim(y) # 429  36
 y <- y[filterByExpr(y, group = meta$treatment), , keep.lib.sizes = FALSE]
 dim(y) # 216  36
 y <- calcNormFactors(y)
-v   <- voomWithQualityWeights(y, design, plot = TRUE)
+v <- voomWithQualityWeights(y, design, plot = TRUE)
 fit <- eBayes(lmFit(v, design))
 
 res_ntc_AAd <- topTable(fit, coef = "treatmentAAd", n = Inf)
 summary(decideTests(fit[, "treatmentAAd"]))
 
-## same for Torin-1
+# same for Torin-1
 md <- so_p2@meta.data
 md$guide_id <- md[["identity2"]]
-md$is_ntc   <- grepl("_NTC_[AB]$", md$guide_id)
+md$is_ntc <- grepl("_NTC_[AB]$", md$guide_id)
 keep_cells <- md$is_ntc & md$sample2 %in% c("Con", "Tor")
 so_n <- so_p2[, keep_cells]
-md   <- md[keep_cells, ]
+md <- md[keep_cells, ]
 
 # pseudobulk per NTC guide x treatment
 grp <- factor(paste(md$guide_id, md$sample2, sep = "|"))
-pb  <- as.matrix(so_n[["tRNA_pp_valid"]]$counts %*% t(fac2sparse(grp)))
+pb <- as.matrix(so_n[["tRNA_pp_valid"]]$counts %*% t(fac2sparse(grp)))
 
 meta <- data.frame(pb_id  = levels(grp),
                    ncells = as.vector(table(grp)),
                    row.names = levels(grp))
-meta$guide_id  <- sub("\\|.*$", "", meta$pb_id)
+meta$guide_id <- sub("\\|.*$", "", meta$pb_id)
 meta$treatment <- sub("^.*\\|", "", meta$pb_id)
 
-# drop small pseudobulks, keep guides present in both treatments
-meta <- meta[meta$ncells >= 10, ]
+# quality filter, keep guides present in both treatments
+meta <- meta[meta$ncells >= 100, ]
 paired <- names(which(table(meta$guide_id) == 2))
 meta <- meta[meta$guide_id %in% paired, ]
-pb   <- pb[, rownames(meta)]
+pb <- pb[, rownames(meta)]
 length(paired) # number of NTC guide pairs
 tapply(meta$ncells, meta$treatment, summary)
 
 meta$treatment <- factor(meta$treatment, levels = c("Con", "Tor"))
-meta$guide_id  <- factor(meta$guide_id)
+meta$guide_id <- factor(meta$guide_id)
 design <- model.matrix(~ guide_id + treatment, data = meta)
 
 y <- DGEList(pb)
@@ -104,7 +103,7 @@ dim(y) # 429  36
 y <- y[filterByExpr(y, group = meta$treatment), , keep.lib.sizes = FALSE]
 dim(y) # 201  36
 y <- calcNormFactors(y)
-v   <- voomWithQualityWeights(y, design, plot = TRUE)
+v <- voomWithQualityWeights(y, design, plot = TRUE)
 fit <- eBayes(lmFit(v, design))
 
 res_ntc_Tor <- topTable(fit, coef = "treatmentTor", n = Inf)
