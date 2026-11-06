@@ -16,3 +16,31 @@ Figure 4 | cd34_differentiation
 Figure 5 | Tcell_stim
 Figure 6 | perturb_treatment
 ```
+
+### Setup
+Code and data files are organized in the following this path structure:
+```
+file_structure/
+├── git_repo/
+│   ├── global_functions
+│   │   ├── tRNA_import.R
+│   │   └── tRNA_valid.R
+│   └── project
+│       ├── code
+│       │   └── setup.R
+│       └── output
+└── trna_large_data
+    ├── giftwrap
+    │   ├── Sample_A
+    │   │   ├── barcodes.tsv.gz
+    │   │   ├── manifest.tsv
+    │   │   └── probe_reads.tsv.gz
+    │   └── Sample_B
+    │       ├── barcodes.tsv.gz
+    │       ├── manifest.tsv
+    │       └── probe_reads.tsv.gz
+    ├── mRNA
+    │   ├── Sample_A.wta.h5
+    │   └── Sample_B.wta.h5
+    └── output
+```
