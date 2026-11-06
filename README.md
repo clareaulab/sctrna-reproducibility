@@ -17,7 +17,7 @@ Figure 5 | Tcell_stim
 Figure 6 | perturb_treatment
 ```
 
-<br>
+&nbsp;
 
 ### Setup
 Code and data files are organized in the following this path structure:
