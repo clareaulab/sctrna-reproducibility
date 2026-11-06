@@ -2,7 +2,7 @@
 Repository for reanalyzing and reproducing single-cell tRNA-seq analyses
 
 ### Background and gap filling framework
-<img width="1465" height="365" alt="Screenshot 2026-10-28 at 3 13 07 PM" src="https://github.com/user-attachments/assets/8802980c-f2a2-45bf-8296-81abd9f4603b" />
+<img width="1259" height="314" alt="Screenshot 2026-11-05 at 9 05 48 PM" src="https://github.com/user-attachments/assets/a7f0f6b1-a4d9-44ad-a70f-5b6d2d375336" />
 
 <br>
 
@@ -16,6 +16,8 @@ Figure 4 | cd34_differentiation
 Figure 5 | Tcell_stim
 Figure 6 | perturb_treatment
 ```
+
+<br>
 
 ### Setup
 Code and data files are organized in the following this path structure:
